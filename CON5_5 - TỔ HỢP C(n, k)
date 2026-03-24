@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+const int MOD = 1e9 + 7;  // Thêm modulo
+
+int f[1005][1005];
+
+int main() {
+    int q;
+    cin >> q;
+    while(q--){
+        int n, k;
+        cin >> n >> k;
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j <= min(i, k); j++) {
+                if (j == 0 || j == i)
+                    f[i][j] = 1;
+                else
+                    f[i][j] = (f[i-1][j-1] + f[i-1][j]) % MOD; // thêm modulo
+            }
+        }
+        cout << f[n][k] << endl;
+    }
+    return 0;
+}
