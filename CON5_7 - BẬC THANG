@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+const int mod=1e9+7;
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+    int n,k;
+    cin>>n>>k;
+    int dp[1000]={0};
+    dp[0]=1;
+    for(int i=1;i<=n;i++)
+    {
+        for(int step=1;step<=k;step++)
+        {
+            if(i-step>=0)
+            {
+                dp[i]=(dp[i]+dp[i-step])%mod;
+            }
+        }
+    }
+    cout<<dp[n]<<endl;
+    }
+}
