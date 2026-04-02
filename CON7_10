@@ -1,0 +1,68 @@
+#include<bits/stdc++.h>
+using namespace std;
+string check(string s)
+{
+    stack<int>st;
+    string res="";
+    st.push(1);
+    int n=s.size();
+    for(int i=0;i<n;i++)
+    {
+        if(s[i]=='(')
+        {
+            if(i>0&&s[i-1]=='-')
+            {
+                st.push(-st.top());
+            }else
+            {
+                st.push(st.top());
+            }
+        }else if(s[i]==')')
+        {
+            st.pop();
+        }else if(s[i]=='+')
+        {
+            if(st.top()==1)
+            {
+                res+="+";
+            }else
+            {
+                res+="-";
+            }
+        }else if(s[i]=='-')
+        {
+            if(st.top()==1)
+            {
+                res+="-";
+            }else
+            {
+                res+="+";
+            }
+        }else
+        {
+            res+=s[i];
+        }
+    }
+    return res;
+}
+int main()
+{
+    int q;
+    cin>>q;
+    cin.ignore();
+    while(q--)
+    {
+        string s,t;
+        getline(cin,s);
+        getline(cin,t);
+        string tmp=check(s);
+        string hmk=check(t);
+        if(tmp==hmk)
+        {
+            cout<<"YES"<<endl;
+        }else
+        {
+            cout<<"NO"<<endl;
+        }
+    }
+}
