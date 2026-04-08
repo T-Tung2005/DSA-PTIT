@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n,k;
+int c[100][100];
+int adj[100];
+int x[100];
+vector<vector<int>>v;
+void try1(int i,int sum)
+{
+    if(i > n)
+    {
+        if(sum == k)
+        {
+            vector<int>tmp;
+            for(int h=1;h<=n;h++)
+            {
+                tmp.push_back(x[h]);
+            }
+            v.push_back(tmp);
+        }
+        return;
+    }
+    for(int j=1;j<=n;j++)
+    {
+        if(!adj[j])
+        {
+            adj[j]=1;
+            x[i]=j;
+            sum+=c[i][j];
+            try1(i+1,sum);
+            sum-=c[i][j];
+            adj[j]=0;
+        }
+    }
+}
+
+int main()
+{
+        cin>>n>>k;
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=n;j++)
+            {
+                cin>>c[i][j];
+            }
+        }
+        memset(adj,0,sizeof(adj));
+        try1(1,0);
+        cout<<v.size()<<endl;
+        for(auto x: v)
+        {
+            for(auto y : x)
+            {
+                cout<<y<<" ";
+            }
+            cout<<endl;
+        }
+}
