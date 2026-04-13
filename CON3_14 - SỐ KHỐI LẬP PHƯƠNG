@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int>a;
+long long res;
+int x[20];
+map<long long,bool>d;
+void try1(int i, int n)
+{
+    for(int j=0;j<=1;j++)
+    {
+        x[i]=j;
+        if(i==n-1)
+        {
+            long long ans=0;
+            for(int h=0;h<n;h++)
+            {
+                if(x[h]==1)
+                {
+                    ans=ans*10+a[h];
+                }
+            }
+            if(d[ans]==true&&ans!=0 && res < ans)
+                res=ans;
+        }else
+        try1(i+1,n);
+    }
+}
+int main()
+{
+    int q;
+    cin>>q;
+    for(int i=1;i*i*i<=1000000;i++)
+    {
+        d[i*i*i]=true;
+    }
+    while(q--)
+    {
+        long long n;
+        cin>>n;
+        a.clear();
+        while(n)
+        {
+            a.push_back(n%10);
+            n/=10;
+        }
+        reverse(a.begin(),a.end());
+        res=-1;
+        try1(0,a.size());
+        cout<<res<<endl;
+    }
+}
