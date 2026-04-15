@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long giatotnhat(vector<int> a,int index)
+{
+    int mingiatot=a[index],res=0;
+    for(int i=index+1;i<a.size();i++)
+    {
+        mingiatot=min(mingiatot,a[i]);
+        res=max(res,a[i]-mingiatot);
+    }
+    return res;
+}
+long long pricesmax(vector<int> a)
+{
+    int minprices=a[0],res=0;
+    for(int i=1;i<a.size();i++)
+    {
+        if(a[i]>minprices)
+        {
+            int curent=a[i]-minprices+giatotnhat(a,i+1);
+            res=max(res,curent);
+        }else{
+            minprices=min(minprices,a[i]);
+        }
+    }
+    return res;
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        int n;
+        cin>>n;
+        vector<int>v(n);
+        for(int i=0;i<n;i++)
+        {
+            cin>>v[i];
+        }
+        long long tmp=pricesmax(v);
+        cout<<tmp<<endl;
+    }
+}
