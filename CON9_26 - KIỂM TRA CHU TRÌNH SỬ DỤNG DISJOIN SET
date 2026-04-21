@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n,m;
+vector<int>ke[1005];
+int parent[1005];
+int ok;
+bool vst[1005];
+int dfs(int u)
+{
+    vst[u]=true;
+    for(int v : ke[u])
+    {
+        if(!vst[v])
+        {
+            parent[v]=u;
+            dfs(v);
+        }else if(v!=parent[u])
+        {
+            ok=1;
+        }
+    }
+    return false;
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        cin>>n>>m;
+        for(int i=1;i<=m;i++)
+        {
+            int x,y;
+            cin>>x>>y;
+            ke[x].push_back(y);
+            ke[y].push_back(x);
+        }
+        dfs(1);
+        if(ok==1)
+        {
+            cout<<"YES"<<endl;
+        }else cout<<"NO"<<endl;
+    }
+}
