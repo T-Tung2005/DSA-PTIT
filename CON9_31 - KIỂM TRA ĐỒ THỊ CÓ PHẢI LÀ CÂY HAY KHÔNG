@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int>ke[1000];
+bool vst[1000];
+int ok,dem;
+int parent[1000];
+int n;
+void dfs(int u)
+{
+    vst[u]=true;
+    for(int v : ke[u])
+    {
+        if(!vst[v])
+        {
+             parent[v]=u;
+             dfs(v);
+        }else if(v!=parent[u])
+        {
+            ok=1;
+        }
+    }
+}
+void tplt()
+{
+    dem=0;
+    for(int i=1;i<=n;i++)
+    {
+        if(!vst[i])
+        {
+            dem++;
+            dfs(i);
+        }
+    }
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        dem=0;
+        ok=0;
+        cin>>n;
+        for(int i=1;i<=n-1;i++)
+        {
+            int x,y;
+            cin>>x>>y;
+            ke[x].push_back(y);
+            ke[y].push_back(x);
+        }
+        tplt();
+        if(ok==0&&dem==1)
+        {
+            cout<<"YES"<<endl;
+        }else
+        {
+            cout<<"NO"<<endl;
+        }
+        memset(ke,0,sizeof(ke));
+        memset(vst,0,sizeof(vst));
+        memset(parent,0,sizeof(parent));
+    }
+}
