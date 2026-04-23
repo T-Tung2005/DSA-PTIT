@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<int>v;
+void bfs(int n)
+{
+    queue<int>q;
+    q.push(1);
+    while(!q.empty())
+    {
+        int tmp=q.front();
+        q.pop();
+        int k=tmp%n;
+        if(k==0)
+        {
+            cout<<tmp<<endl;
+            break;
+        }else
+        {
+            q.push(tmp*10);
+            q.push(tmp*10+1);
+        }
+    }
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        v.clear();
+        int n;
+        cin>>n;
+        bfs(n);
+    }
+}
