@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+int s,t;
+int dp[1005];
+int check(int t)
+{
+    if(t<=s) return s-t;
+    if(dp[t]!=0) return dp[t];
+    if(t%2==0)
+    {
+        dp[t]=1+check(t/2);
+    }else
+    {
+        dp[t]=1+check(t+1);
+    }
+    return dp[t];
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        memset(dp,0,sizeof(dp));
+       cin>>s>>t;
+       cout<<check(t)<<endl;
+    }
+}
