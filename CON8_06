@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool vst[1005];
+void bfs(int n)
+{
+    queue<int>q;
+    q.push(9);
+    while(!q.empty())
+    {
+        int tmp=q.front();
+        q.pop();
+        if(tmp%n==0)
+        {
+            cout<<tmp<<endl;
+            break;
+        }else
+        {
+            int cur=tmp;
+            cur=cur*10;
+            q.push(cur);
+            cur=cur*10+9;
+            q.push(cur);
+        }
+    }
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        int n;
+        cin>>n;
+        bfs(n);
+    }
+}
