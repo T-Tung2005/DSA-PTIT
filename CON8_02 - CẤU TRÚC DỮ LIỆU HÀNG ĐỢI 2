@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int q;
+    cin>>q;
+    queue<int>v;
+    while(q--)
+    {
+        string type;
+        cin>>type;
+        if(type=="PUSH")
+        {
+            int x;
+            cin>>x;
+            v.push(x);
+        }else if(type=="POP")
+        {
+            if(!v.empty()) v.pop();
+        }else if(type=="PRINTFRONT")
+        {
+            if(!v.empty()) cout<<v.front()<<endl;
+            else cout<<"NONE"<<endl;
+        }
+    }
+}
