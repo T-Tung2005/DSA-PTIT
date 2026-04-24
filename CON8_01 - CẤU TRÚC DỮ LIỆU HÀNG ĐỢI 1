@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        queue<int>q;
+        int n;
+        cin>>n;
+        while(n--)
+        {
+            int type;
+            cin>>type;
+            if(type==1)
+            {
+                cout<<q.size()<<endl;
+            }else if(type==2)
+            {
+                if(q.empty()) cout<<"YES"<<endl;
+                else cout<<"NO"<<endl;
+            }else if(type==3)
+            {
+                int x;
+                cin>>x;
+                q.push(x);
+            }else if(type==4)
+            {
+                if(!q.empty())
+                {
+                    int tmp=q.front();
+                    q.pop();
+                }else continue;
+            }else if(type==5)
+            {
+                if(!q.empty())
+                {
+                    int tmp=q.front();
+                    cout<<tmp<<endl;
+                }else cout<<"-1"<<endl;
+            }else if(type==6)
+            {
+                if(!q.empty())
+                {
+                    int tmp=q.back();
+                    cout<<tmp<<endl;
+                }else cout<<"-1"<<endl;
+            }
+        }
+    }
+}
