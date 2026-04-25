@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct node{
+    int data;
+    node* left;
+    node* right;
+    node(int x)
+    {
+        data=x;
+        left=right=NULL;
+    }
+};
+node* insertnode(node* root,int x)
+{
+    if(root==NULL) return new node(x);
+    if(x<root->data) root->left=insertnode(root->left,x);
+    else root->right=insertnode(root->right,x);
+    return root;
+}
+int timmax(node* root)
+{
+    while(root->right!=NULL)
+    {
+        root=root->right;
+    }
+    return root->data;
+}
+int main()
+{
+        node* root=NULL;
+        int n;
+        cin>>n;
+        for(int i=0;i<n;i++)
+        {
+            int a;
+            cin>>a;
+            if(a!=-1)
+            {
+                root=insertnode(root,a);
+            }
+        }
+        cout<<timmax(root)<<endl;
+}
