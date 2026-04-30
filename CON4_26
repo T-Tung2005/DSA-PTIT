@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int q;
+    cin>>q;
+    cin.ignore();
+    while(q--)
+    {
+        int k;
+        string a,b;
+        cin>>k>>a>>b;
+        int n=a.size();
+        int m=b.size();
+        while(n<m) a='0'+a;
+        while(m<n) b='0'+b;
+        int carry=0;
+        string res="";
+        for(int i=n-1;i>=0;i--)
+        {
+            int so1=a[i]-'0';
+            int so2=b[i]-'0';
+            int tong=so1+so2+carry;
+            res+=to_string(tong%k);
+            carry=tong/k;
+        }
+        if(carry>0) res+=to_string(carry);
+        reverse(res.begin(),res.end());
+        cout<<res<<endl;
+    }
+}
