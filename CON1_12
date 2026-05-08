@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n,k;
+int x[100];
+int dem=0;
+void ql1(int i,int cnt)//i chỉ số n là k số bít 1,n là chiều dài
+{
+    for(int j=0;j<=1;j++)
+    {
+       x[i]=j;
+       int check=cnt+j;
+       if(i==n-1)
+       {
+           if(check==k)
+           {
+               for(int h=0;h<=i;h++)
+               {
+                   cout<<x[h];
+               }
+               cout<<endl;
+           }
+       }else
+       ql1(i+1,check);
+    }
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        cin>>n>>k;
+        ql1(0,0);
+    }
+}
