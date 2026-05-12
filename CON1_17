@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+void bfs(int u)
+{
+    queue<string>q;
+    q.push("9");
+    while(!q.empty())
+    {
+        string tmp=q.front();
+        q.pop();
+        int dem=0;
+        for(char x : tmp)
+        {
+            dem=(dem*10+(x-'0'))%u;
+        }
+        if(dem==0)
+        {
+            cout<<tmp<<endl;
+            return;
+        }else{
+        q.push(tmp+"0");
+        q.push(tmp+"9");
+        }
+    }
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        int n;
+        cin>>n;
+        bfs(n);
+    }
+}
