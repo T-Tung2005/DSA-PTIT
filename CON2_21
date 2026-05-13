@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n;
+int vst[100];
+string s;
+void ql(string tmp)
+{
+    if(tmp.size()==n)
+    {
+        cout<<tmp<<" ";
+    }
+    for(int i=0;i<n;i++)
+    {
+        if(!vst[i])
+        {
+            vst[i]=true;
+            ql(tmp+s[i]);
+            vst[i]=false;
+        }
+    }
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        cin>>s;
+        n=s.size();
+        ql("");
+        cout<<endl;
+    }
+}
