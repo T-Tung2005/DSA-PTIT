@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+using namespace std;
+int n,k,s;
+vector<vector<int>>v;
+bool prime(int n)
+{
+    if(n<2) return false;
+    for(int i=2;i*i<=n;i++)
+    {
+        if(n%i==0) return false;
+    }
+        return true;
+}
+void try1(int index,int tong,vector<int>tmp)
+{
+    if(tong>s)
+    {
+        return;
+    }
+    if(tmp.size()==n)
+    {
+        if(tong==s)
+        {
+            v.push_back(tmp);
+        }
+       // continue;
+    }
+    for(int j=index;j<s;j++)
+    {
+       if(prime(j))
+       {
+            tmp.push_back(j);
+            try1(j+1,tong+j,tmp);
+           tmp.pop_back();
+       }
+    }
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        v.clear();
+        cin>>n>>k>>s;
+        vector<int>h;
+        try1(k+1,0,h);
+        cout<<v.size()<<endl;
+        for(auto x : v)
+        {
+            for(auto y : x)
+            {
+                cout<<y<<" ";
+            }
+            cout<<endl;
+        }
+    }
+}
