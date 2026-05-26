@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long doicho(string s,char a, char b)
+{
+    int n=s.size();
+    for(int i=0;i<n;i++)
+    {
+        if(s[i]==a)
+        {
+            s[i]=b;
+        }
+    }
+    return stoll(s);
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        string a,b;
+        cin>>a>>b;
+        cout<<doicho(a,'6','5')+doicho(b,'6','5')<<" ";
+        cout<<doicho(a,'5','6')+doicho(b,'5','6')<<endl;
+    }
+}
