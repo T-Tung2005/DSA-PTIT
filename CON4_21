@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+const int mod=1000000007;
+long long binpow(long long n,long long k)
+{
+    if(k==0) return 1;
+    long long x=binpow(n,k/2);
+    if(k%2==0)
+    {
+        return x*x%mod;
+    }else
+    {
+        return ((x*x%mod)*(n%mod))%mod;
+    }
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        long long n,m;
+        cin>>n>>m;
+        cout<<binpow(n,m)<<endl;
+    }
+}
