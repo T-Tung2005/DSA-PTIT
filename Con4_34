@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        int n,m;
+        cin>>n>>m;
+        int a[n],b[m];
+        vector<int>v(n+m-1,0);
+        for(int i=0;i<n;i++) cin>>a[i];
+        for(int i=0;i<m;i++) cin>>b[i];
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                v[i+j]+=a[i]*b[j];
+            }
+        }
+        for(auto x : v)
+        {
+            cout<<x<<" ";
+        }
+        cout<<endl;
+    }
+}
