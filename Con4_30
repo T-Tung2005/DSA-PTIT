@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define mod 1000000007
+struct matran
+{
+    ll x[2][2];
+    friend matran operator *(matran a , matran b)
+    {
+        matran c;
+        for(int i=0;i<2;i++)
+        {
+            for(int j=0;j<2;j++)
+            {
+                c.x[i][j]=0;
+                for(int k=0;k<2;k++)
+                {
+                    c.x[i][j]+=a.x[i][k]*b.x[k][j];
+                    c.x[i][j]%=mod;
+                }
+            }
+        }
+        return c;
+    }
+};
+matran binpow(matran x , ll k)
+{
+    if(k==1) return x;
+    matran tmp=binpow(x,k/2);
+    if(k%2==0)
+    {
+        return tmp*tmp;
+    }else
+     return tmp*tmp*x;
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        matran a;
+        int n;
+        cin>>n;
+        a.x[0][0]=1; a.x[0][1]=1;
+        a.x[1][0]=1; a.x[1][1]=0;
+        matran res=binpow(a,n);
+        cout<<res.x[0][1]<<endl;
+    }
+}
