@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const int mod = 1e9 + 7;
+int n,k;
+char a[1005];
+int ok;
+char h[2]={'A','B'};
+bool check()
+{
+    int cnt=0;
+    int dem=0;
+    for(int i=1;i<=n;i++)
+    {
+        if(a[i]=='A')
+        {
+            cnt++;
+        }else
+        {
+            if(cnt==k) dem++;
+            if(cnt>k) return false;
+            cnt=0;
+        }
+    }
+    if(cnt==k) dem++;
+    if(cnt>k) return false;
+    return dem==1;
+}
+vector<string>v;
+void try1(int i){
+      for(char x : h)
+      {
+          a[i]=x;
+          if(i==n)
+          {
+              if(check())
+              {
+                  string s="";
+                  for(int j=1;j<=n;j++)
+                  {
+                      s+=a[j];
+                  }
+                  v.push_back(s);
+              }
+          }else{
+            try1(i+1);
+          }
+      }
+}
+int main() {
+    cin>>n>>k;
+    try1(1);
+    cout<<v.size()<<endl;
+    for(auto x : v)
+    {
+        for(auto y : x)
+        {
+            cout<<y<<" ";
+        }
+        cout<<endl;
+    }
+}
