@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int a[105][105];
+int dp[105][105];
+
+int main()
+{
+    int t;
+    cin >> t;
+    while(t--)
+    {
+        int n, m;
+        cin >> n >> m;
+
+        for(int i = 1; i <= n; i++)
+        {
+            for(int j = 1; j <= m; j++)
+            {
+                cin >> a[i][j];
+                dp[i][j] = 1e9;
+            }
+        }
+
+        queue<pair<int,int>> q;
+        dp[1][1] = 0;
+        q.push({1,1});
+
+        while(!q.empty())
+        {
+            auto [i, j] = q.front(); q.pop();
+            int k = a[i][j];
+
+            // sang phải
+            int ni = i;
+            int nj = j + k;
+            if(nj <= m && dp[ni][nj] > dp[i][j] + 1)
+            {
+                dp[ni][nj] = dp[i][j] + 1;
+                q.push({ni, nj});
+            }
+
+            // xuống dưới
+            int ni1 = i + k;
+            int nj1 = j;
+            if(ni1 <= n && dp[ni1][nj1] > dp[i][j] + 1)
+            {
+                dp[ni1][nj1] = dp[i][j] + 1;
+                q.push({ni1, nj1});
+            }
+        }
+
+        if(dp[n][m] == 1e9) cout << -1 << endl;
+        else cout << dp[n][m] << endl;
+    }
+}
