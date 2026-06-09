@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        string s;
+        cin>>s;
+        vector<int>dp(s.size()+1);
+        long long tong=0;
+        dp[0]=s[0]-'0';
+        for(int i=1;i<s.size();i++)
+        {
+            int digit=s[i]-'0';
+            dp[i]=dp[i-1]*10+(i+1)*digit;
+            tong+=dp[i];
+        }
+        cout<<tong+dp[0]<<endl;
+    }
+}
