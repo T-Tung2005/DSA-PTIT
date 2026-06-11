@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+int check(string s)
+{
+    stack<char>st;
+    for(char x : s)
+    {
+        if(x=='('|| x=='{' || x=='[') st.push(x);
+        else 
+        {
+            if(st.empty()) return 0;
+            if(x==')')
+            {
+                if(st.empty()) return 0;
+                else if(st.top()=='(') st.pop();
+            }
+          else if(x=='}')
+            {
+                if(st.empty()) return 0;
+                else if(st.top()=='{') st.pop();
+            }
+           else if(x==']')
+            {
+                if(st.empty()) return 0;
+                else if(st.top()=='[') st.pop();
+            }
+        }
+    }
+    if(!st.empty()) return 0;
+    return 1;
+}
+int main()
+{
+    int q;
+    cin>>q;
+    while(q--)
+    {
+        string s;
+        cin>>s;
+        if(check(s)){
+            cout<<"YES"<<endl;
+        }else cout<<"NO"<<endl;
+    }
+}
